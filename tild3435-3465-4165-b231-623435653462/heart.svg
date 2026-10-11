@@ -1,0 +1,11 @@
+var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"> <path d="M22 9.3125C22 15.2098 12.5 21 12.5 21C12.5 21 3.0008 15.2098 3 9.3125C2.99957 6.125 5.36294 4 8.27778 4C11.1926 4 12.5 6.65625 12.5 6.65625C12.5 6.65625 14.0833 4 17.25 4C20.0229 4 22 6.65625 22 9.3125Z" fill="#414143"></path> </svg> 
+}

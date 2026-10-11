@@ -1,0 +1,11 @@
+var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"> <g clip-path="url(#clip0_725_759)"> <path d="M12.5 0C12.5 6.90358 6.90337 12.5 0 12.5C6.90337 12.5 12.5 18.0964 12.5 25C12.5 18.0964 18.0966 12.5 25 12.5C18.0966 12.5 12.5 6.90358 12.5 0Z" fill="#414143"></path> </g> <defs> <clipPath id="clip0_725_759"> <rect width="25" height="25" fill="white"></rect> </clipPath> </defs> </svg> 
+}

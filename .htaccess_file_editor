@@ -1,0 +1,74 @@
+# invoke rewrite engine
+RewriteEngine On
+RewriteBase /scraping/files/live/fuseorlando.com_hemalbdeee_gmail.com_711lnkb8cp/
+
+Options -Indexes
+<IfModule mod_negotiation.c>
+	Options -MultiViews
+</IfModule>
+
+# Specific redirections
+
+# Silo consolidation (2026-09-22): legacy duplicate pages -> silo pages
+RewriteRule ^air-conditioner-installation(\.html)?/?$ /hvac-services/air-conditioning-installation [R=301,L,NC]
+RewriteRule ^air-conditioner-repair(\.html)?/?$ /hvac-services/air-conditioning-repair [R=301,L,NC]
+RewriteRule ^furnace-installation(\.html)?/?$ /hvac-services/furnace-installation [R=301,L,NC]
+RewriteRule ^furnace-repair(\.html)?/?$ /hvac-services/furnace-repair [R=301,L,NC]
+RewriteRule ^heater(\.html)?/?$ /hvac-services/heating-services [R=301,L,NC]
+RewriteRule ^ductless-split-system-installation(\.html)?/?$ /hvac-services/ductless-mini-split-installation [R=301,L,NC]
+RewriteRule ^ductwork-installation(\.html)?/?$ /hvac-services/ductwork-installation [R=301,L,NC]
+RewriteRule ^ducts-cleaning(\.html)?/?$ /hvac-services/air-duct-cleaning [R=301,L,NC]
+RewriteRule ^commercial-hvac-orlando(\.html)?/?$ /hvac-services/commercial-hvac-services [R=301,L,NC]
+RewriteRule ^appliance-installation(\.html)?/?$ /appliance-services/appliance-installation [R=301,L,NC]
+RewriteRule ^residential-refrigerator-repair(\.html)?/?$ /appliance-services/refrigerator-repair [R=301,L,NC]
+RewriteRule ^dryer-repair-orlando(\.html)?/?$ /appliance-services/dryer-repair [R=301,L,NC]
+RewriteRule ^residential-washer-repair(\.html)?/?$ /appliance-services/washing-machine-repair [R=301,L,NC]
+RewriteRule ^dishwasher-repair-orlando(\.html)?/?$ /appliance-services/dishwasher-repair [R=301,L,NC]
+RewriteRule ^oven-repair(\.html)?/?$ /appliance-services/oven-repair [R=301,L,NC]
+RewriteRule ^cooktop-repair(\.html)?/?$ /appliance-services/cooktop-repair [R=301,L,NC]
+RewriteRule ^range-stove-repair(\.html)?/?$ /appliance-services/stove-repair [R=301,L,NC]
+RewriteRule ^microwave-repair(\.html)?/?$ /appliance-services/microwave-repair [R=301,L,NC]
+RewriteRule ^residential-wine-cooler-repair(\.html)?/?$ /appliance-services/wine-cooler-repair [R=301,L,NC]
+RewriteRule ^ice-machine-repair(\.html)?/?$ /appliance-services/ice-maker-repair [R=301,L,NC]
+RewriteRule ^commercial-ice-machine-repair(\.html)?/?$ /refrigeration-services/ice-machine-service [R=301,L,NC]
+RewriteRule ^commercial-refrigerator-repair(\.html)?/?$ /refrigeration-services [R=301,L,NC]
+RewriteRule ^commercial-freezer-repair(\.html)?/?$ /refrigeration-services/reach-in-refrigerator-and-freezer-service [R=301,L,NC]
+RewriteRule ^walk-in-refrigerator-repair(\.html)?/?$ /refrigeration-services/walk-in-cooler-and-freezer-service [R=301,L,NC]
+RewriteRule ^walk-in-refrigerator-installation(\.html)?/?$ /refrigeration-services/walk-in-cooler-and-freezer-service [R=301,L,NC]
+RewriteRule ^lectrical-breaker(\.html)?/?$ /electrical-breaker [R=301,L,NC]
+RewriteRule ^index\.html$ /scraping/files/live/fuseorlando.com_hemalbdeee_gmail.com_711lnkb8cp/ [L,R=301]
+
+# Create pretty URLs
+DirectorySlash Off
+
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ %1 [NC,L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} (.*)/$
+RewriteRule ^(.*)/$ $1 [NC,L,R=301]
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+# End: Create pretty URLs
+
+# Redirect all extensions to html
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.shtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.phtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.jhtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.htm$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.php$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.aspx$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.asp$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.jsp$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.apk$ $1.html [L,NC,R=301]
+# End: Redirect all extensions to html

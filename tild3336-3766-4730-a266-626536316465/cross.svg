@@ -1,0 +1,11 @@
+var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"> <g clip-path="url(#clip0_809_266)"> <path d="M12.9733 10.6342L9.96229 7.62317C8.63064 6.29152 7.68789 4.61787 7.2288 2.77046L3.0334 6.96586C4.88081 7.42495 6.55445 8.3677 7.88611 9.69936L10.8971 12.7104L7.75798 15.8495C6.36966 17.2378 4.65526 18.2511 2.78711 18.7876L6.81127 22.8118C7.34777 20.9436 8.3611 19.2293 9.74943 17.8409L12.8886 14.7018L16.5634 18.3766C17.895 19.7083 18.8378 21.3819 19.2969 23.2293L23.4923 19.0339C21.6449 18.5748 19.9712 17.6321 18.6396 16.3004L14.9648 12.6256L18.1039 9.48649C19.4922 8.09817 21.2066 7.08483 23.0748 6.54834L19.0506 2.52417C18.5141 4.39233 17.5008 6.10672 16.1124 7.49504L12.9733 10.6342Z" fill="#414143"></path> </g> <defs> <clipPath id="clip0_809_266"> <rect width="22" height="22" fill="white" transform="translate(2 2)"></rect> </clipPath> </defs> </svg> 
+}

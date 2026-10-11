@@ -1,0 +1,28 @@
+# robots.txt - https://fuseorlando.com
+User-agent: *
+Allow: /
+
+# Internal Tilda template files (return 410 Gone)
+Disallow: /header
+Disallow: /footer
+Disallow: /error
+Disallow: /page29197784
+Disallow: /page29197788
+Disallow: /page34107001
+Disallow: /page50309919
+Disallow: /page62764639
+Disallow: /page62764641
+Disallow: /page62764645
+
+# Duplicate blog path - canonical version lives under /blog/tpost/
+Disallow: /tpost/
+
+# Legacy URLs are 301-redirected to their silo pages (see nginx.txt); they stay crawlable
+# so search engines can follow the redirects.
+
+# No crawl value
+Disallow: /*?*utm_
+Disallow: /*?*fbclid
+Disallow: /*?*gclid
+
+Sitemap: https://fuseorlando.com/sitemap.xml

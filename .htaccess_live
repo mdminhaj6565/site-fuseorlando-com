@@ -1,0 +1,154 @@
+# =====================================================================
+#  Fuse HVAC & Appliance Repair Orlando
+#  SEO / HTTP status-code configuration  -  v2 (2026-09-19)
+#  Hardened for shared hosting (Hostinger / LiteSpeed / cPanel).
+#
+#  Goal: every URL returns exactly one correct status code
+#        200 / 301 / 404 / 410  - no redirect chains, no soft-404s.
+#
+#  NOTE: every directive below is wrapped in <IfModule>, so if a module
+#  is missing the block is skipped instead of throwing 500.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+#  Directory listing / content negotiation.
+#  These two lines are the most common cause of "500 Internal Server
+#  Error" on shared hosting (when AllowOverride does not permit
+#  Options). They are OFF by default on Hostinger anyway, so they stay
+#  commented out. Uncomment ONLY if your host allows Options overrides.
+# ---------------------------------------------------------------------
+# Options -Indexes
+# Options -MultiViews
+
+# ---------------------------------------------------------------------
+# 0) Custom error documents - the page is served WITH the real status
+#    code (404 stays 404, it never becomes a 200 "soft 404").
+# ---------------------------------------------------------------------
+ErrorDocument 403 /error.html
+ErrorDocument 404 /error.html
+ErrorDocument 410 /error.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# ---------------------------------------------------------------------
+# 1) Canonical host + protocol - ONE 301 hop, never a chain.
+#    http://www -> https://non-www   (single redirect)
+# ---------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ---------------------------------------------------------------------
+# 2) Permanently removed / internal template files -> 410 Gone
+#    (Tilda partials that must never be indexed. 410 tells search
+#     engines to drop them faster than a 404.)
+# ---------------------------------------------------------------------
+RewriteRule ^(header|footer)(\.html)?/?$ - [R=410,L]
+RewriteRule ^page(29197784|29197788|34107001|50309919|62764639|62764641|62764645)(\.html)?/?$ - [R=410,L]
+
+# The 404 template itself must not be reachable as a normal 200 page.
+# The REDIRECT_STATUS guard keeps the ErrorDocument sub-request working.
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^error(\.html)?/?$ - [R=404,L]
+
+# ---------------------------------------------------------------------
+# 3) Duplicate-content consolidation -> 301
+#    /tpost/*  is an exact mirror of  /blog/tpost/*
+# ---------------------------------------------------------------------
+RewriteRule ^tpost/(.+?)(\.html)?/?$ /blog/tpost/$1 [L,R=301,NC]
+RewriteRule ^commercial-hvac-orlando(\.html)?/?$ /hvac-services/commercial-hvac-services [L,R=301,NC]
+
+# ---------------------------------------------------------------------
+# 4) Home page normalisation -> 301
+# ---------------------------------------------------------------------
+RewriteRule ^index(\.html)?/?$ / [L,R=301]
+
+# ---------------------------------------------------------------------
+# 5) Pretty URLs
+# ---------------------------------------------------------------------
+
+# 5a) /page.html -> /page  (301, only when the file really exists, so a
+#     missing file answers 404 directly instead of 301 -> 404).
+#     REDIRECT_STATUS guard stops the 404 page from issuing a redirect.
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.html[\s?] [NC]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# 5b) /page/ -> /page  (301) when a matching .html page exists.
+#     This also covers the five paths that are BOTH a folder and a page
+#     (/blog, /service-area, /hvac-services, /appliance-services,
+#      /refrigeration-services) without needing DirectorySlash.
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)/$ /$1 [NC,L,R=301]
+
+# 5c) /whatever/ -> /whatever  (301) for anything that is not a real dir
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)/$ /$1 [NC,L,R=301]
+
+# 5d) A folder that also has a matching .html page -> serve the page
+#     (internal rewrite, stays 200). Must run before mod_dir would add
+#     a trailing slash, which would otherwise cause a redirect loop.
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ /$1.html [L]
+
+# 5e) /page -> /page.html  (internal rewrite, stays 200)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+
+# ---------------------------------------------------------------------
+# 6) Legacy extensions -> 301, but ONLY when the .html target exists.
+#    Otherwise the request falls through and returns a clean 404.
+# ---------------------------------------------------------------------
+RewriteCond %{QUERY_STRING} ^$
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.*)\.(shtml|phtml|jhtml|htm|php|aspx|asp|jsp|apk)$ /$1 [L,NC,R=301]
+
+# ---------------------------------------------------------------------
+# 7) Anything else that does not exist -> real 404 (handled by Apache).
+# ---------------------------------------------------------------------
+</IfModule>
+
+# ---------------------------------------------------------------------
+# 8) Performance (Core Web Vitals -> ranking factor)
+# ---------------------------------------------------------------------
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+	AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+	AddOutputFilterByType DEFLATE application/json application/xml
+	AddOutputFilterByType DEFLATE image/svg+xml application/rss+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType text/css                "access plus 1 year"
+	ExpiresByType application/javascript  "access plus 1 year"
+	ExpiresByType image/jpeg              "access plus 1 year"
+	ExpiresByType image/png               "access plus 1 year"
+	ExpiresByType image/gif               "access plus 1 year"
+	ExpiresByType image/svg+xml           "access plus 1 year"
+	ExpiresByType image/x-icon            "access plus 1 year"
+	ExpiresByType text/html               "access plus 0 seconds"
+	ExpiresByType application/xml         "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+	<FilesMatch "\.(css|js|jpg|jpeg|png|gif|svg|ico|woff2?)$">
+		Header set Cache-Control "public, max-age=31536000, immutable"
+	</FilesMatch>
+	<FilesMatch "\.html$">
+		Header set Cache-Control "public, max-age=0, must-revalidate"
+	</FilesMatch>
+	Header set X-Content-Type-Options "nosniff"
+	Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

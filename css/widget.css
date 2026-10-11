@@ -1,0 +1,113 @@
+.facelink-widget-toggle {position:fixed; display:none; bottom:3.5vw; right:3.5vw; z-index:99999999999; box-sizing:border-box;}
+.facelink-widget-toggle.facelink-widget-ready {display:block; animation:facelinkFadeInToTop 0.5s;}
+.facelink-widget-toggle button {position:relative; width:10vw; height:10vw; min-width:100px; min-height:100px; padding:5%; margin:0; border:none!important; border-radius:100%!important; cursor:pointer; transition:all 0.3s; -webkit-appearance:none; box-shadow:rgba(0, 0, 0, 0.15) 0 4px 20px; box-sizing:border-box; transition:all 0.3s; overflow:hidden;}
+.facelink-widget-toggle button:hover {transform:scale(1.1);}
+.facelink-widget-toggle button:focus {outline:none; box-shadow:none;}
+.facelink-widget-toggle .facelink-widget-toggle-video {position:relative; width:100%; height:100%; border-radius:100%; overflow:hidden; -webkit-mask-image: -webkit-radial-gradient(white, black);}
+.facelink-widget-toggle .facelink-widget-toggle-video video {display:block!important; position:static!important; width:100%!important; height:100%!important; object-fit:cover!important;}
+.facelink-widget-toggle .facelink-widget-toggle-video .facelink-video-overlay {position:absolute; top:0; left:0; width:100%; height:100%; background-image:linear-gradient(to top, rgba(15, 15, 17, 0.65), rgba(15, 15, 17, 0.05));}
+.facelink-widget-toggle .facelink-widget-toggle-video .facelink-video-overlay:before {display:block; width:100%; height:100%; margin:auto; background:transparent url(../img/common/btn-play.svg) 50% 50% no-repeat; background-size:30%; opacity:0.7; content:''; transition:all 0.3s;}
+.facelink-widget-toggle button:hover .facelink-widget-toggle-video .facelink-video-overlay:before {opacity:1;}
+.facelink-widget-toggle .facelink-widget-caption {display:none;}
+.facelink-widget-toggle .facelink-widget-hide {position:absolute; display:none; top:16px; right:16px; width:32px; height:20px; background-color:rgba(0,0,0,0.3); border-radius:3px; cursor:pointer; transition:all 0.3s; z-index:10;}
+.facelink-widget-toggle .facelink-widget-hide:before {display:block; width:16px; height:3px; margin:auto; box-shadow:rgba(0,0,0,0.4) 0 0 10px; background-color:white; content:"";}
+.facelink-widget-toggle .facelink-widget-hide:hover {transform:scale(1.1);}
+
+.facelink-widget-toggle.facelink-widget-toggle-hidden button {opacity:0;}
+
+.facelink-widget-content {display:none; position:fixed; bottom:24px; right:24px; width:360px; height:calc(100% - 40px); max-height:630px; background-color:transparent; border-radius:24px; box-shadow:rgba(0,0,0,0.3) 0 0 32px; z-index:99999999999;}
+.facelink-widget-content.facelink-widget-active {display:block; animation:facelinkFadeInToTop 1s;}
+.facelink-widget-content .facelink-widget-content-in {position:relative; width:100%; height:100%;}
+.facelink-widget-content iframe {position:static!important; display:block!important;border:none!important; width:100%!important; height:100%!important; border-radius:24px!important; pointer-events:all!important; overflow:hidden; -webkit-mask-image:-webkit-radial-gradient(white, black);}
+
+.facelink-widget-content .facelink-widget-close {position:absolute; top:-12px; right:-12px; width:30px; height:30px; padding:0; margin:0; border-radius:100%; background:rgba(0,0,0,1) url('../img/common/close.svg') 50% 50% no-repeat; background-size:10px; color:#dedede; border:none; font-size:24px; text-align:center; cursor:pointer; transition:all 0.3s; z-index:10;}
+.facelink-widget-content .facelink-widget-close:hover {animation:facelinkSpin90 0.5s;}
+.facelink-widget-content .facelink-widget-close:focus {outline:none; box-shadow:none;}
+
+
+.facelink-widget-toggle.facelink-widget-position-left,
+.facelink-widget-content.facelink-widget-position-left {right:auto; left:3.5vw;}
+
+
+.facelink-widget-toggle.facelink-widget-position-center {left:50%; right:auto;}
+.facelink-widget-toggle.facelink-widget-position-center button {transform:translateX(-50%);}
+.facelink-widget-toggle.facelink-widget-position-center button:hover {transform:translateX(-50%) scale(1.1);}
+.facelink-widget-content.facelink-widget-position-center {left:50%; right:auto; margin-left:-180px;}
+
+
+.facelink-widget-toggle.facelink-widget-type-square button {border-radius:20px!important;}
+.facelink-widget-toggle.facelink-widget-type-square .facelink-widget-toggle-video {border-radius:15px;}
+
+.facelink-widget-toggle.facelink-widget-type-rectangle button {height:17.8vw; min-width:100px; min-height:177px; padding:4%; border-radius:12px!important;}
+.facelink-widget-toggle.facelink-widget-type-rectangle .facelink-widget-toggle-video {border-radius:10px;}
+.facelink-widget-toggle.facelink-widget-type-rectangle .facelink-widget-caption {border-radius:16px; padding-bottom:10px; align-items:flex-end;}
+.facelink-widget-toggle.facelink-widget-type-rectangle .facelink-widget-hide {}
+
+
+.facelink-widget-toggle.facelink-widget-type-tiny {}
+.facelink-widget-toggle.facelink-widget-type-tiny button {display:flex; width:30vw; min-width:230px; min-height:auto; height:auto; padding:2% 10% 2% 2%; border-radius:1000px!important; flex-direction:row; align-items:center;}
+.facelink-widget-toggle.facelink-widget-type-tiny .facelink-widget-toggle-video {width:9vw; height:9vw; min-width:60px; min-height:60px; margin-right:1vw; flex-shrink:0; flex-grow:0; border-radius:100%; overflow:hidden; -webkit-mask-image:-webkit-radial-gradient(white, black);}
+.facelink-widget-toggle.facelink-widget-type-tiny .facelink-widget-toggle-video .facelink-video-overlay {}
+.facelink-widget-toggle.facelink-widget-type-tiny .facelink-widget-caption {display:block; margin:auto; background-color:transparent; text-align:center; box-sizing:border-box; line-height:1.2; justify-content:flex-end; align-items:center; font-size:12px; font-weight:500; color:#ffffff; text-shadow:rgba(0,0,0,0.4) 0 0 4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+
+@media all and (min-width: 899px) {
+	.facelink-widget-toggle.facelink-widget-type-square button {border-radius:2.25vw!important;}
+	.facelink-widget-toggle.facelink-widget-type-square .facelink-widget-toggle-video {border-radius:1.75vw;}
+
+	.facelink-widget-toggle.facelink-widget-type-rectangle button {border-radius:1.25vw!important;}
+	.facelink-widget-toggle.facelink-widget-type-rectangle .facelink-widget-toggle-video {border-radius:0.9vw;}
+
+	.facelink-widget-toggle.facelink-widget-type-tiny .facelink-widget-caption {font-size: 16px;}
+}
+
+@media all and (min-width: 1360px) {
+	.facelink-widget-toggle.facelink-widget-type-tiny .facelink-widget-caption {font-size:24px;}
+
+	.facelink-widget-content {width:420px; max-height:747px;}
+}
+
+@media all and (min-width: 1899px) {
+	.facelink-widget-toggle.facelink-widget-type-tiny .facelink-widget-caption {font-size:32px;}
+
+	.facelink-widget-content {width:500px; max-height:890px;}
+}
+
+
+
+
+
+
+@media all and (max-width: 600px) {
+	.facelink-widget-content {left:0!important; top:0!important; bottom:auto!important; right:auto!important; width:100%; height:100%; margin:0!important; max-height:none; border-radius:0; background-color:rgba(0,0,0,0.9);}
+	.facelink-widget-content iframe {border-radius:0!important;}
+
+	.facelink-widget-content .facelink-widget-close {top:3px; right:3px;}
+
+	.facelink-widget-toggle.facelink-widget-type-circle button {width:35vw; height:35vw;}
+
+
+/*
+	.facelink-widget-toggle button {width:100px; height:100px; border-width:4px;}
+	.facelink-widget-toggle .facelink-widget-caption {font-size:12px;}
+
+	.facelink-widget-toggle.facelink-widget-type-rectangle button {width:100px; height:170px; padding:5px; border-radius:12px!important;}
+	.facelink-widget-toggle.facelink-widget-type-rectangle .facelink-widget-toggle-video {border-radius:10px;}
+	.facelink-widget-toggle.facelink-widget-type-rectangle .facelink-widget-caption {left:5px; top:5px; width:calc(100% - 10px); height:calc(100% - 10px); border-radius:10px;}
+	.facelink-widget-toggle .facelink-widget-hide {top:10px; right:10px;}
+
+ */
+}
+
+
+@keyframes facelinkSpin90 {
+	0% {transform:rotateZ(0);}
+	100% {transform:rotateZ(90deg);}
+}
+
+
+
+@keyframes facelinkFadeInToTop {
+	0% {transform:translateY(100px); opacity:0;}
+	100% {transform:translateY(0); opacity:1;}
+}

@@ -1,0 +1,11 @@
+var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"> <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3074 9.99552V2H14.3074V9.91607L21.2571 5.94742L22.7448 8.55258L15.8322 12.5L22.7448 16.4474L21.2571 19.0526L14.3074 15.0839V23H11.3074V15.0839L4.35768 19.0526L2.87 16.4474L9.70839 12.5423L2.29297 8.57241L3.70891 5.92759L11.3074 9.99552Z" fill="#414143"></path> </svg> 
+}

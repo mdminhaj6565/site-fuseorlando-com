@@ -1,0 +1,90 @@
+# =====================================================================
+#  Nginx equivalent of .htaccess  -  Fuse HVAC & Appliance Repair Orlando
+#  Paste inside the server { } block. Updated: 2026-09-22
+# =====================================================================
+
+# --- Custom error documents (real status codes kept) ---
+error_page 403 /error.html;
+error_page 404 /error.html;
+error_page 410 /error.html;
+location = /error.html { internal; }
+
+# --- 1) Canonical host + protocol: one 301 hop ---
+# server { listen 80; listen 443 ssl; server_name www.fuseorlando.com fuseorlando.com;
+#          return 301 https://fuseorlando.com$request_uri; }   # for www / http hosts
+
+# --- 2) Internal template files -> 410 Gone ---
+location ~* ^/(header|footer|page(29197784|29197788|34107001|50309919|62764639|62764641|62764645))(\.html)?/?$ {
+	return 410;
+}
+location ~* ^/error/?$ { return 404; }
+
+# --- 3) Duplicate content -> 301 ---
+rewrite ^/tpost/(.+?)(\.html)?/?$        /blog/tpost/$1                         permanent;
+rewrite ^/commercial-hvac-orlando(\.html)?/?$ /hvac-services/commercial-hvac-services permanent;
+
+# --- 3b) Silo consolidation (2026-09-22): legacy duplicate pages -> silo pages (301) ---
+rewrite ^/air-conditioner-installation(\.html)?/?$ /hvac-services/air-conditioning-installation permanent;
+rewrite ^/air-conditioner-repair(\.html)?/?$ /hvac-services/air-conditioning-repair permanent;
+rewrite ^/furnace-installation(\.html)?/?$ /hvac-services/furnace-installation permanent;
+rewrite ^/furnace-repair(\.html)?/?$ /hvac-services/furnace-repair permanent;
+rewrite ^/heater(\.html)?/?$ /hvac-services/heating-services permanent;
+rewrite ^/ductless-split-system-installation(\.html)?/?$ /hvac-services/ductless-mini-split-installation permanent;
+rewrite ^/ductwork-installation(\.html)?/?$ /hvac-services/ductwork-installation permanent;
+rewrite ^/ducts-cleaning(\.html)?/?$ /hvac-services/air-duct-cleaning permanent;
+rewrite ^/appliance-installation(\.html)?/?$ /appliance-services/appliance-installation permanent;
+rewrite ^/residential-refrigerator-repair(\.html)?/?$ /appliance-services/refrigerator-repair permanent;
+rewrite ^/dryer-repair-orlando(\.html)?/?$ /appliance-services/dryer-repair permanent;
+rewrite ^/residential-washer-repair(\.html)?/?$ /appliance-services/washing-machine-repair permanent;
+rewrite ^/dishwasher-repair-orlando(\.html)?/?$ /appliance-services/dishwasher-repair permanent;
+rewrite ^/oven-repair(\.html)?/?$ /appliance-services/oven-repair permanent;
+rewrite ^/cooktop-repair(\.html)?/?$ /appliance-services/cooktop-repair permanent;
+rewrite ^/range-stove-repair(\.html)?/?$ /appliance-services/stove-repair permanent;
+rewrite ^/microwave-repair(\.html)?/?$ /appliance-services/microwave-repair permanent;
+rewrite ^/residential-wine-cooler-repair(\.html)?/?$ /appliance-services/wine-cooler-repair permanent;
+rewrite ^/ice-machine-repair(\.html)?/?$ /appliance-services/ice-maker-repair permanent;
+rewrite ^/commercial-ice-machine-repair(\.html)?/?$ /refrigeration-services/ice-machine-service permanent;
+rewrite ^/commercial-refrigerator-repair(\.html)?/?$ /refrigeration-services permanent;
+rewrite ^/commercial-freezer-repair(\.html)?/?$ /refrigeration-services/reach-in-refrigerator-and-freezer-service permanent;
+rewrite ^/walk-in-refrigerator-repair(\.html)?/?$ /refrigeration-services/walk-in-cooler-and-freezer-service permanent;
+rewrite ^/walk-in-refrigerator-installation(\.html)?/?$ /refrigeration-services/walk-in-cooler-and-freezer-service permanent;
+rewrite ^/lectrical-breaker(\.html)?/?$ /electrical-breaker permanent;
+
+# --- 4) Home page normalisation -> 301 ---
+rewrite ^/index(\.html)?/?$ / permanent;
+
+# --- 5) Pretty URLs ---
+# 5a) /page.html -> /page (301) only when the file exists
+if ($request_uri ~ ^/([^?]+)\.html($|\?)) { set $noext /$1; }
+if (-f $document_root$request_uri) { set $noext_ok "${noext}"; }
+
+# 5b) strip trailing slash (301)
+rewrite ^/(.*)/$ /$1 permanent;
+
+# 5c) extensionless -> .html (internal rewrite, stays 200)
+try_files $uri $uri.html $uri/index.html =404;
+
+# --- 6) Legacy extensions -> 301 only when the .html target exists ---
+if ($is_args = '') {
+	rewrite ^/([^.]*)\.(shtml|phtml|jhtml|htm|php|aspx|asp|jsp|apk)$ /$1 permanent;
+}
+
+# --- 7) Performance ---
+gzip on;
+gzip_comp_level 6;
+gzip_min_length 256;
+gzip_types text/plain text/css text/xml application/javascript application/json
+           application/xml image/svg+xml application/rss+xml;
+
+location ~* \.(css|js|jpg|jpeg|png|gif|svg|ico|woff2?)$ {
+	expires 1y;
+	add_header Cache-Control "public, immutable";
+}
+location ~* \.html$ {
+	expires 0;
+	add_header Cache-Control "public, max-age=0, must-revalidate";
+}
+
+add_header X-Content-Type-Options "nosniff" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+charset utf-8;

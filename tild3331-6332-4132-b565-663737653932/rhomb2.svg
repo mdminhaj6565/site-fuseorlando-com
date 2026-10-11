@@ -1,0 +1,11 @@
+var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none"> <path d="M13 2L17.7141 6.71428L13 11.4286L8.28589 6.71428L13 2Z" fill="#414143"></path> <path d="M6.71411 8.28558L11.4282 12.9999L6.71411 17.7141L2 12.9999L6.71411 8.28558Z" fill="#414143"></path> <path d="M19.2859 8.28558L24 12.9999L19.2859 17.7141L14.5718 12.9999L19.2859 8.28558Z" fill="#414143"></path> <path d="M13 14.5714L17.7141 19.2857L13 24L8.28589 19.2857L13 14.5714Z" fill="#414143"></path> </svg> 
+}
