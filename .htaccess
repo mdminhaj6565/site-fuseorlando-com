@@ -56,6 +56,12 @@ RewriteRule ^page(29197784|29197788|34107001|50309919|62764639|62764641|62764645
 RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^error(\.html)?/?$ - [R=404,L]
 
+# BEGIN Search Console fixes (2026-10-17)
+# Old Tilda AMP URLs (?amp=true) - there is no AMP version; 301 to the clean post (one hop)
+RewriteCond %{QUERY_STRING} (^|&)amp=(true|1)(&|$) [NC]
+RewriteRule ^(?:blog/)?tpost/(.+?)(\.html)?/?$ /blog/tpost/$1 [L,R=301,NC,QSD]
+# END Search Console fixes
+
 # ---------------------------------------------------------------------
 # 3) Duplicate-content consolidation -> 301
 #    /tpost/*  is an exact mirror of  /blog/tpost/*

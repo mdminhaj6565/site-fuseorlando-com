@@ -14,8 +14,7 @@ Disallow: /page62764639
 Disallow: /page62764641
 Disallow: /page62764645
 
-# Duplicate blog path - canonical version lives under /blog/tpost/
-Disallow: /tpost/
+# /tpost/* 301-redirects to /blog/tpost/* - left crawlable so Google can follow the redirect
 
 # Legacy URLs are 301-redirected to their silo pages (see nginx.txt); they stay crawlable
 # so search engines can follow the redirects.
